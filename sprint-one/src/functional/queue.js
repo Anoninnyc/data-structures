@@ -12,7 +12,9 @@ var key=0;
   };
 
   someInstance.dequeue = function() {
+    if (key>0){
     key--;
+     }
   };
 
   someInstance.size = function() {
