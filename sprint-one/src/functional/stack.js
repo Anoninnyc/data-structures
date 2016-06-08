@@ -12,8 +12,9 @@ var Stack = function() {
   };
 
   someInstance.pop = function() {
-
+    if (key >0){
      key--;
+    }
      return storage[key];
   };
 
