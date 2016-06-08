@@ -1,11 +1,7 @@
-
-
-
-
-
 var Stack = function() {
-  var counter=0;
-  var newStack={};
+  var newStack={
+  };
+  newStack.counter = 0;
   _.extend(newStack, stackMethods);
 
   return newStack;
@@ -14,13 +10,17 @@ var Stack = function() {
 
 
 var stackMethods = {
-
-
 };
 
 
 stackMethods.size= function(){
- return 0;
- }
+ return this.counter;
+ };
+
+ stackMethods.push = function(){
+  this.counter++;
+ };
+
+ 
 
  
