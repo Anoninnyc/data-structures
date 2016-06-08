@@ -6,7 +6,9 @@ var Stack = function() {
   var key=0;
   // Implement the methods below
   someInstance.push = function(value) {
-   
+   storage[key]=value;
+
+   key++;
   };
 
   someInstance.pop = function() {
