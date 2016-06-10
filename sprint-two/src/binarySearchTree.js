@@ -14,10 +14,9 @@ var BinarySearchTree = function(value) {
   };
  
   var newTree = {}; 
-  newTree.storage = [value];
-newTree.value=value;
-   newTree.right = null;
-     newTree.left = null;
+  newTree.value=value;
+  newTree.right = null;
+  newTree.left = null;
     
   extend(newTree, methods);
   return newTree;
@@ -29,11 +28,12 @@ newTree.value=value;
 
 var methods = {};
 
-methods.insert = function(value, tree) {
-
+methods.insert = function(value, tree, array) {
   // this wil help keep track of whih tree/node we're on 
+
   var tree = tree || this;
-  //
+
+
 
 
   if (value < tree['value']) {
@@ -43,18 +43,17 @@ methods.insert = function(value, tree) {
         "value": value,
         right: null,
         left: null,
-         storage : []
+        
+  
       };
-      if(this.storage && this.storage.indexOf(value) === -1){
-      this.storage.push(value)
-    }
+     
     }
     // if there IS something there, then consider our value WRT that 'something' via recursion. 
     if (tree.left !== null) {
-      methods.insert(value, tree.left);
+      array= methods.insert(value, tree.left,array);
     }
     //
-  }
+  } 
 
 
 
@@ -67,25 +66,21 @@ methods.insert = function(value, tree) {
         "value": value,
         right: null,
         left: null,
-        storage : [5,5]
+        
       };
-      console.log(this.storage);
-      if(this.storage && this.storage.indexOf(value)){
-      this.storage.push(value)
+      
+   
     }
-    }
-    //
-
+    
 
     // if there IS something there, then consider our value WRT that 'something' via recursion. 
     if (tree.right !== null) {
-      methods.insert(value, tree.right);
+      array=methods.insert(value, tree.right,array);
     }
 
     }
 
-
-
+return array;
   }
 
 
@@ -102,12 +97,26 @@ methods.contains = function(value, node) {
  if (node.right !== null && value > node.value){
   return methods.contains(value, node.right)
  }
- return false
+ return false;
 }
 
-methods.depthFirstLog = function(cb) {
-  for (var i = 0; i < this.storage.length; i++){
-    cb(this.storage[i]);
-  }
 
-}
+
+methods.depthFirstLog = function(cb, tree) {
+
+  var tree = tree || this;
+  //var valuesThatveBeenRunOn = [];//
+
+  
+    cb(tree.value);
+
+
+    if (tree.left!==null) {
+      methods.depthFirstLog(cb,tree.left)
+    }
+
+    if (tree.right!==null) {
+      methods.depthFirstLog(cb,tree.right)
+    }
+
+  };
